@@ -25,7 +25,7 @@ use weather
 - create a capped collection named `temperature` with maximum of 3 documents and try inserting more than 3 to see the result.
 
 ```
-db.createCollection('temperature')
+db.createCollection('temperature', {capped: true, size: 1024, max: 3})
 db.temperature.insert({'temp': '32C', 'city': 'Delhi'})
 db.temperature.insert({'temp': '33C', 'city': 'Goa'})
 db.temperature.insert({'temp': '40C', 'city': 'Kota'})
@@ -39,10 +39,14 @@ db.createCollection('humidity')
 ```
 
 - check whether `temperature` collection is capped or not ?
-  no
+
+```
+db.temperature.isCapped()
+```
+
 - Delete `humidity` collection and then the entire database(weather).
 
-```js
+```
 db.humidity.drop();
 db.dropDatabase();
 ```
