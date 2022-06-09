@@ -287,8 +287,11 @@ db.users.update({name: "Steve Ortega"}, {$push: {sports: 'golf'}})
 - Find all users who play either 'football' or 'cricket'.
 
 ```
-db.users.find($or: {sports: ['football', 'cricket']})
+db.users.find(sports: {$in: ['football', 'cricket']})
 ```
 
 - Find all users whose name includes 'ri' in their name.
-  db.users.find({'name': {$regex: 'ri'}})
+
+```
+ db.users.find({'name': {$regex: 'ri'}})
+```
